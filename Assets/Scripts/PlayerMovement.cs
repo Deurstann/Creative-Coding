@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    [SerializeField] private float _movementSpeed = 20f;
+    [SerializeField] private float _movementSpeed = 30f;
     float yRotation;
     float xRotation;
 
@@ -40,10 +40,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position -= _movementSpeed * Time.deltaTime * transform.right;
         }
-        if (transform.position.x < 68) transform.position = new Vector3(68,7,transform.position.z);
-        else if (transform.position.x > 129) transform.position = new Vector3(129,7,transform.position.z);
-        if (transform.position.z < 452) transform.position = new Vector3(transform.position.x,transform.position.y,452);
-        else if (transform.position.z > 515) transform.position = new Vector3(transform.position.x,transform.position.y,515);
+        
         transform.position = new Vector3(transform.position.x,7,transform.position.z);
     }
 }
