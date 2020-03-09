@@ -6,6 +6,7 @@ public class objectif : MonoBehaviour
 {
     private int state;
 
+    public static float finalScore;
     [SerializeField]
     private float[] listX,listZ;
     // Start is called before the first frame update
@@ -48,10 +49,12 @@ public class objectif : MonoBehaviour
 
     void OnTriggerStay(Collider other){
         if (state <= 8){
+            Timer.remainingTime += 2f;
+            CacheTimer.remaining += 2f;
             state ++;
             ChangeObjectif(state);
         }else{
-
+            finalScore = Mathf.Floor(100f * Timer.remainingTime);
         }
     }
     
