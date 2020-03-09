@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour
         remainingTime -= Time.deltaTime;
         if (remainingTime < 0.0001f) remainingTime = 0.0001f;
         Color curColor = image.color;
-        curColor.a = Mathf.Max(0.1f,remainingTime/maxTime);
+        curColor.a = Mathf.Max(0.2f,remainingTime/maxTime);
         image.color = curColor;
 
     }

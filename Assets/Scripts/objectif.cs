@@ -7,11 +7,20 @@ public class objectif : MonoBehaviour
     private int state;
 
     public static float finalScore;
-    [SerializeField]
     private float[] listX,listZ;
+
+    private float SoundTimer;
+    private float MaxST = 2f;
+
+    [SerializeField]
+    private AudioSource dingSource;
     // Start is called before the first frame update
     void Start()
     {
+        dingSource = GetComponent<AudioSource>();
+
+        SoundTimer = MaxST;
+
         state = 0;
         listX = new float[10];
         listZ = new float[10];
@@ -44,13 +53,17 @@ public class objectif : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SoundTimer -= Time.deltaTime;
+        if (SoundTimer < 0f){
+            SoundTimer = MaxST;
+            dingSource.Play();
+        }
     }
 
     void OnTriggerStay(Collider other){
         if (state <= 8){
-            Timer.remainingTime += 2f;
-            CacheTimer.remaining += 2f;
+            Timer.remainingTime += 10f;
+            CacheTimer.remaining += 10f;
             state ++;
             ChangeObjectif(state);
         }else{
