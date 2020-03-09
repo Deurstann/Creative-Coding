@@ -17,6 +17,6 @@ public class CacheTimer : MonoBehaviour
     {
         remaining -= Time.deltaTime;
         if (remaining < 0.0001f) remaining = 0.0001f;
-        transform.localScale = new Vector3(1-remaining/max,transform.localScale.y,transform.localScale.z); 
+        transform.localScale = new Vector3(Mathf.Max(0.1f,1-remaining/max),transform.localScale.y,transform.localScale.z); 
     }
 }

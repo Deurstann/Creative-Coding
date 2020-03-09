@@ -66,6 +66,7 @@ public class objectif : MonoBehaviour
             CacheTimer.remaining += 10f;
             state ++;
             ChangeObjectif(state);
+            PlayerMovement.ding();
         }else{
             finalScore = Mathf.Floor(100f * Timer.remainingTime);
         }

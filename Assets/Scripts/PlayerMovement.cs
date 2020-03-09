@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private static AudioSource sndSource;
 
     [SerializeField] private float _movementSpeed = 30f;
     float yRotation;
@@ -15,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     float yRotationV;
     float xRotationV;
     float lookSmoothnes = 0.1f; 
+    
+    void Start(){
+        sndSource = GetComponent<AudioSource>();
+
+    }
     protected void Update()
     {
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
@@ -42,5 +48,9 @@ public class PlayerMovement : MonoBehaviour
         }
         
         transform.position = new Vector3(transform.position.x,7,transform.position.z);
+    }
+
+    public static void ding(){
+        sndSource.Play();
     }
 }
