@@ -10,42 +10,35 @@ public class PlayerMovement : MonoBehaviour
     float yRotation;
     float xRotation;
 
-    [SerializeField] private float lookSensitivity = 2;
-    float currentXRotation;
-    float currentYRotation;
-    float yRotationV;
-    float xRotationV;
-    float lookSmoothnes = 0.1f; 
-    
+
     void Start(){
         sndSource = GetComponent<AudioSource>();
-
     }
     protected void Update()
     {
-        yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
-        xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80, 100);
-        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes);
-        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
-
-        if (Input.GetKey(KeyCode.Z))
+        
+        
+        if (Mathf.Abs(Input.GetAxis("Vertical")) > 0.6f)
         {
+            transform.position -= _movementSpeed * Time.deltaTime * transform.forward * Input.GetAxis("Vertical");
+        }
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.6f)
+        {
+            transform.position += _movementSpeed * Time.deltaTime * transform.right * Input.GetAxis("Horizontal");
+        }
+        if (Input.GetKey(KeyCode.Z)){
             transform.position += _movementSpeed * Time.deltaTime * transform.forward;
         }
-        if (Input.GetKey(KeyCode.S))
-        {
+        if (Input.GetKey(KeyCode.S)){
             transform.position -= _movementSpeed * Time.deltaTime * transform.forward;
         }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += _movementSpeed * Time.deltaTime * transform.right;
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
+        if (Input.GetKey(KeyCode.Q)){
             transform.position -= _movementSpeed * Time.deltaTime * transform.right;
         }
+        if (Input.GetKey(KeyCode.D)){
+            transform.position += _movementSpeed * Time.deltaTime * transform.right;
+        }
+        
         
         transform.position = new Vector3(transform.position.x,7,transform.position.z);
     }

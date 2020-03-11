@@ -6,7 +6,6 @@ public class objectif : MonoBehaviour
 {
     private int state;
 
-    public static float finalScore;
     private float[] listX,listZ;
 
     private float SoundTimer;
@@ -14,6 +13,8 @@ public class objectif : MonoBehaviour
 
     [SerializeField]
     private AudioSource dingSource;
+
+    public GameObject aveugle,victoire;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,7 +69,10 @@ public class objectif : MonoBehaviour
             ChangeObjectif(state);
             PlayerMovement.ding();
         }else{
-            finalScore = Mathf.Floor(100f * Timer.remainingTime);
+            aveugle.SetActive(false);
+            victoire.SetActive(true);
+            finalScore.finalscore = Mathf.Floor(100f * Timer.remainingTime);
+            Destroy(this.gameObject);
         }
     }
     
